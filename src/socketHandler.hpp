@@ -23,13 +23,13 @@ using namespace std;
 using namespace sio;
 
 class socketHandler: protected ofThread {
-
   private:
     sio::client handler;
 
-    void onConnected();
-    void onClosed();
-    void onFailed();
+    void bindEvents();
+    void onClientConnected();
+    void onClientClosed(sio::client::close_reason const& reason);
+    void onClientFailed();
 
   public:
     void setup(string& address);
@@ -37,4 +37,6 @@ class socketHandler: protected ofThread {
     ofEvent<void> notifyConnection;
     ofEvent<void> notifyDisconnect;
     ofEvent<void> notifyError;
+
+    sio::socket::ptr currentSocket;
 };

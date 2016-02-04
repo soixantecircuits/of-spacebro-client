@@ -17,7 +17,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  ofDrawBitmapString(ofApp::status, 20, 20);
+  ofDrawBitmapStringHighlight(ofApp::status, 20, 20);
 }
 
 //--------------------------------------------------------------
@@ -76,13 +76,13 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::onConnection () {
-  ofApp::status = "connected";
+  status = "connected";
 }
 
 void ofApp::onDisconnect () {
-  ofApp::status = "not connected";
+  status = "not connected";
 }
 
 void ofApp::onError () {
-  ofApp::status = "error";
+  status = "error";
 }
