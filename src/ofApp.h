@@ -1,10 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofEvents.h"
+#include "socketHandler.hpp"
 
 class ofApp : public ofBaseApp{
-
-	public:
+  public:
 		void setup();
 		void update();
 		void draw();
@@ -20,5 +21,12 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+    void onConnection();
+    void onDisconnect();
+    void onError();
+
+    string address;
+    string status;
+
+    socketHandler sioHandler;
 };

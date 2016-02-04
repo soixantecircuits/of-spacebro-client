@@ -2,7 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+  address = "http://127.0.0.1:8888";
+  status = "not connected";
+  sioHandler.setup(address);
+  ofAddListener(sioHandler.notifyConnection, this, &ofApp::onConnection);
+  ofAddListener(sioHandler.notifyDisconnect, this, &ofApp::onDisconnect);
+  ofAddListener(sioHandler.notifyError, this, &ofApp::onError);
 }
 
 //--------------------------------------------------------------
@@ -12,7 +17,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+  ofDrawBitmapString(ofApp::status, 20, 20);
 }
 
 //--------------------------------------------------------------
@@ -68,4 +73,16 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void ofApp::onConnection () {
+  ofApp::status = "connected";
+}
+
+void ofApp::onDisconnect () {
+  ofApp::status = "not connected";
+}
+
+void ofApp::onError () {
+  ofApp::status = "error";
 }
