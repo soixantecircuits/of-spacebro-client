@@ -5,13 +5,7 @@ void ofApp::setup(){
   address = "http://127.0.0.1:8888";
   status = "not connected";
 
-  connection_listener listener(h);
-
-  h.set_open_listener(std::bind(&connection_listener::on_connected, &listener));
-  h.set_close_listener(std::bind(&connection_listener::on_close, &listener, std::placeholders::_1));
-  h.set_fail_listener(std::bind(&connection_listener::on_fail, &listener));
-
-  h.connect(address);
+  socketIO.setup(address);
 }
 
 //--------------------------------------------------------------

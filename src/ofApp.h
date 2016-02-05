@@ -1,14 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "socketListener.h"
+#include "ofxSocketIO.h"
 
-#if defined(_MSC_VER) || defined(_WIN32) || defined(WIN32) || defined(__MINGW32__)
-  // Windows stuff
-#else
-  // Linux and OSX here
-  #include <sio_client.h>
-#endif
 
 class ofApp : public ofBaseApp{
   public:
@@ -28,7 +22,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    sio::client h;
+    ofxSocketIO socketIO;
 
     string address;
     string status;
