@@ -4,10 +4,14 @@
 void ofApp::setup(){
   address = "http://127.0.0.1:8888";
   status = "not connected";
-  sioHandler.setup(address);
-  ofAddListener(sioHandler.notifyConnection, this, &ofApp::onConnection);
-  ofAddListener(sioHandler.notifyDisconnect, this, &ofApp::onDisconnect);
-  ofAddListener(sioHandler.notifyError, this, &ofApp::onError);
+
+  connection_listener listener(h);
+
+  h.set_open_listener(std::bind(&connection_listener::on_connected, &listener));
+  h.set_close_listener(std::bind(&connection_listener::on_close, &listener, std::placeholders::_1));
+  h.set_fail_listener(std::bind(&connection_listener::on_fail, &listener));
+
+  h.connect(address);
 }
 
 //--------------------------------------------------------------
@@ -73,16 +77,4 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
-}
-
-void ofApp::onConnection () {
-  status = "connected";
-}
-
-void ofApp::onDisconnect () {
-  status = "not connected";
-}
-
-void ofApp::onError () {
-  status = "error";
 }

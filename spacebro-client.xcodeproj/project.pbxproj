@@ -10,7 +10,7 @@
 		125506CD3E5F428AAFE5CC65 /* ofxTCPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F399B91E98DC31CDA6DDACB4 /* ofxTCPManager.cpp */; };
 		66CA411C5A9664E27326BF36 /* ofxTCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C085E327DAB912CFA2A443D /* ofxTCPServer.cpp */; };
 		960D20B191346612D5C05A6A /* ofxTCPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF88F02779DD820913ACEA06 /* ofxTCPClient.cpp */; };
-		9A11A1161C63AC8C00D1E261 /* socketHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A11A1141C63AC8C00D1E261 /* socketHandler.cpp */; };
+		9A11A1161C63AC8C00D1E261 /* socketListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A11A1141C63AC8C00D1E261 /* socketListener.cpp */; };
 		9A11A13C1C63B39700D1E261 /* libboost_date_time-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A11A1381C63B39700D1E261 /* libboost_date_time-mt.a */; };
 		9A11A13D1C63B39700D1E261 /* libboost_random-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A11A1391C63B39700D1E261 /* libboost_random-mt.a */; };
 		9A11A13E1C63B39700D1E261 /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A11A13A1C63B39700D1E261 /* libboost_system-mt.a */; };
@@ -64,8 +64,8 @@
 		30841703B7AC8487D16FB4AA /* ofxTCPServer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTCPServer.h; path = ../../../addons/ofxNetwork/src/ofxTCPServer.h; sourceTree = SOURCE_ROOT; };
 		35BB9BB90DBABFD3B39F8DB6 /* ofxUDPManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUDPManager.cpp; path = ../../../addons/ofxNetwork/src/ofxUDPManager.cpp; sourceTree = SOURCE_ROOT; };
 		61313493CDB52744E22A604D /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
-		9A11A1141C63AC8C00D1E261 /* socketHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socketHandler.cpp; sourceTree = "<group>"; };
-		9A11A1151C63AC8C00D1E261 /* socketHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = socketHandler.hpp; sourceTree = "<group>"; };
+		9A11A1141C63AC8C00D1E261 /* socketListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socketListener.cpp; sourceTree = "<group>"; };
+		9A11A1151C63AC8C00D1E261 /* socketListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketListener.h; sourceTree = "<group>"; };
 		9A11A1331C63B39700D1E261 /* sio_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sio_client.h; sourceTree = "<group>"; };
 		9A11A1341C63B39700D1E261 /* sio_message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sio_message.h; sourceTree = "<group>"; };
 		9A11A1351C63B39700D1E261 /* sio_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sio_socket.h; sourceTree = "<group>"; };
@@ -272,8 +272,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				9A11A1141C63AC8C00D1E261 /* socketHandler.cpp */,
-				9A11A1151C63AC8C00D1E261 /* socketHandler.hpp */,
+				9A11A1141C63AC8C00D1E261 /* socketListener.cpp */,
+				9A11A1151C63AC8C00D1E261 /* socketListener.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -388,7 +388,7 @@
 				FB84AAF8D1B7A95266DB5C09 /* jsoncpp.cpp in Sources */,
 				960D20B191346612D5C05A6A /* ofxTCPClient.cpp in Sources */,
 				125506CD3E5F428AAFE5CC65 /* ofxTCPManager.cpp in Sources */,
-				9A11A1161C63AC8C00D1E261 /* socketHandler.cpp in Sources */,
+				9A11A1161C63AC8C00D1E261 /* socketListener.cpp in Sources */,
 				66CA411C5A9664E27326BF36 /* ofxTCPServer.cpp in Sources */,
 				E2564CF7DDB3713772BB682E /* ofxUDPManager.cpp in Sources */,
 			);

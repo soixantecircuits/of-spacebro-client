@@ -1,8 +1,14 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofEvents.h"
-#include "socketHandler.hpp"
+#include "socketListener.h"
+
+#if defined(_MSC_VER) || defined(_WIN32) || defined(WIN32) || defined(__MINGW32__)
+  // Windows stuff
+#else
+  // Linux and OSX here
+  #include <sio_client.h>
+#endif
 
 class ofApp : public ofBaseApp{
   public:
@@ -21,12 +27,9 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    void onConnection();
-    void onDisconnect();
-    void onError();
+
+    sio::client h;
 
     string address;
     string status;
-
-    socketHandler sioHandler;
 };
