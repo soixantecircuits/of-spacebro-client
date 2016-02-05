@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofEvents.h"
 #include "ofxSocketIO.h"
 
 
@@ -21,6 +22,8 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+    void gotEvent(string& name);
 
     ofxSocketIO socketIO;
 

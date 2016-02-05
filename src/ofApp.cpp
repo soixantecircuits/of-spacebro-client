@@ -6,6 +6,7 @@ void ofApp::setup(){
   status = "not connected";
 
   socketIO.setup(address);
+  ofAddListener(socketIO.notifyEvent, this, &ofApp::gotEvent);
 }
 
 //--------------------------------------------------------------
@@ -71,4 +72,8 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void ofApp::gotEvent(string& name) {
+  status = name;
 }

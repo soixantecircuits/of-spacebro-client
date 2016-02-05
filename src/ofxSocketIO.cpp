@@ -8,6 +8,8 @@
 #include "ofxSocketIO.h"
 
 void ofxSocketIO::setup (std::string &address) {
+  currentStatus = "not connected";
+
   client.set_open_listener(std::bind(&ofxSocketIO::onConnect, this));
   client.set_close_listener(std::bind(&ofxSocketIO::onClose, this, std::placeholders::_1));
   client.set_fail_listener(std::bind(&ofxSocketIO::onFail, this));
@@ -17,19 +19,31 @@ void ofxSocketIO::setup (std::string &address) {
 }
 
 void ofxSocketIO::onConnect () {
-  std::cout<<"sio connected "<<std::endl;
+  ofLogNotice("ofxSocketIO", "connection");
+  socket = client.socket();
+  bindEvents();
+  currentStatus = "connected";
+  ofNotifyEvent(notifyEvent, currentStatus);
 }
 
 void ofxSocketIO::onClose (sio::client::close_reason const& reason) {
-  std::cout<<"sio closed "<<std::endl;
-  exit(0);
+  currentStatus = "close";
+  ofLogNotice("ofxSocketIO", currentStatus);
+  ofNotifyEvent(notifyEvent, currentStatus);
 }
 
 void ofxSocketIO::onFail () {
-  std::cout<<"sio failed "<<std::endl;
-  exit(0);
+  currentStatus = "error";
+  ofLogNotice("ofxSocketIO", currentStatus);
+  ofNotifyEvent(notifyEvent, currentStatus);
 }
 
 void ofxSocketIO::onTryReconnect () {
-  std::cout<<"sio attempting to reconnect "<<std::endl;
+  currentStatus = "trying to reconnect";
+  ofLogNotice("ofxSocketIO", currentStatus);
+  ofNotifyEvent(notifyEvent, currentStatus);
+}
+
+void ofxSocketIO::closeConnection () {
+  client.sync_close();
 }
