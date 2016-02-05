@@ -44,6 +44,14 @@ void ofxSocketIO::onTryReconnect () {
   ofNotifyEvent(notifyEvent, currentStatus);
 }
 
+void ofxSocketIO::bindEvents () {
+  socket->on("server-event", sio::socket::event_listener_aux([&] (string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp) {
+    ofLogNotice("ofxSocketIO - name", ofToString(name));
+    currentStatus = name;
+    ofNotifyEvent(notifyEvent, currentStatus);
+  }));
+}
+
 void ofxSocketIO::closeConnection () {
   client.sync_close();
 }
